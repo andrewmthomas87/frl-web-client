@@ -1,0 +1,47 @@
+@import '../../less/variables/all.less';
+
+section#toast {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 100;
+
+	div {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		color: @white;
+		background-color: @primary;
+		padding: 0.9285714286em 0;
+		font-size: 1.25em;
+		font-weight: @fontLight;
+		line-height: 1em;
+		text-align: center;
+		cursor: pointer;
+
+		&.drop-enter {
+			transform: translateY(-2.8571428571em);
+		}
+
+		&.drop-enter.drop-enter-active {
+			transform: translateY(0);
+			transition: transform 0.125s ease;
+		}
+
+		&.drop-leave {
+			transform: translateY(0);
+		}
+
+		&.drop-leave.drop-leave-active {
+			transform: translateY(-2.8571428571em);
+			transition: transform 0.125s ease;
+		}
+
+		a {
+			color: @white;
+			text-decoration: underline;
+		}
+	}
+}

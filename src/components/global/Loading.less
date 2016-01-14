@@ -1,0 +1,20 @@
+@import '../../less/variables/all.less';
+
+@keyframes spin {
+	from {
+		transform:rotate(0deg);
+	}
+	to {
+		transform:rotate(360deg);
+	}
+}
+
+div#loading {
+	position: fixed;
+	top: ~'calc(50% - 1.5em)';
+	left: ~'calc(50% - 1.5em)';
+	width: 3em;
+	height: 3em;
+	background-color: @primary;
+	animation: spin 1.5s linear infinite;
+}

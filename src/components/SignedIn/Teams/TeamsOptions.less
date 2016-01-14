@@ -1,0 +1,47 @@
+@import '../../../less/variables/all.less';
+
+div#teams-options {
+	padding: 1.25em 0;
+
+	>div {
+		display: inline-block;
+		margin: 0 1em;
+		vertical-align: top;
+
+		h5 {
+			border-bottom: 1px solid @primary;
+		}
+
+		input {
+			margin: 0;
+			border-top: none;
+			font-size: 1em;
+		}
+
+		div.select-multiple {
+			div.option {
+				display: inline-block;
+				color: @dark;
+				width: 0.75em;
+				padding: 0.625em;
+				font-size: 1em;
+				font-weight: @fontRegular;
+				line-height: 1em;
+				cursor: pointer;
+
+				&.medium {
+					width: 2em;
+				}
+
+				&.large {
+					width: 8em;
+				}
+
+				&.selected {
+					color: @white;
+					background-color: @primary;
+				}
+			}
+		}
+	}
+}
