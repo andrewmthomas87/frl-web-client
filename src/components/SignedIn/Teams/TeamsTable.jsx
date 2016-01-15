@@ -44,23 +44,21 @@ class TeamsTable extends Component {
 		}
 
 		const table = teams && teams.length ? (
-			<div className='table-list'>
-				<table>
-					<thead>
-						<tr>
-							<th>Team number</th>
-							<th>Name</th>
-							<th>Average seed</th>
-							<th>Average <acronym title='Calculated Contribution to Winning Margin'>CCWM</acronym></th>
-							<th>Event wins</th>
-							<th>Weeks</th>
-						</tr>
-					</thead>
-					<tbody>
-						{teamRows}
-					</tbody>
-				</table>
-			</div>
+			<table>
+				<thead>
+					<tr>
+						<th>Team number</th>
+						<th>Name</th>
+						<th>Average seed</th>
+						<th>Average <acronym title='Calculated Contribution to Winning Margin'>CCWM</acronym></th>
+						<th>Event wins</th>
+						<th>Weeks</th>
+					</tr>
+				</thead>
+				<tbody>
+					{teamRows}
+				</tbody>
+			</table>
 		) : null
 
 		return (
