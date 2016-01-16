@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router'
 
 import Teams from './Teams'
 
@@ -16,7 +15,6 @@ class TeamsTable extends Component {
 		}
 		this.state = {
 			teams: null,
-			error: false,
 			limit: 100
 		}
 	}
@@ -33,7 +31,7 @@ class TeamsTable extends Component {
 				teamRows.push((
 					<tr key={teams[i].teamNumber}>
 						<td>{teams[i].teamNumber}</td>
-						<td><Link to={`/user/team/${teams[i].teamNumber}`}>{teams[i].name}</Link></td>
+						<td><a href={`/user/team/${teams[i].teamNumber}`} target='_blank'>{teams[i].name}</a></td>
 						<td>{teams[i].averageSeed}</td>
 						<td>{teams[i].averageCCWM}</td>
 						<td>{teams[i].eventWins}</td>

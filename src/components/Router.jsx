@@ -17,6 +17,7 @@ import Dashboard from 'components/SignedIn/Dashboard'
 import Research from 'components/SignedIn/Research'
 import Teams from 'components/SignedIn/Teams'
 import Team from 'components/SignedIn/Team'
+import Event from 'components/SignedIn/Event'
 import SignOut from 'components/SignedIn/SignOut'
 
 function requireSignedOut(nextState, replaceState) {
@@ -44,6 +45,7 @@ const router = (
 			<Route path='research' component={Research} />
 			<Route path='teams' component={Teams} />
 			<Route path='team/:teamNumber' component={Team} />
+			<Route path='event/:code' component={Event} />
 			<Route path='sign-out' component={SignOut} />
 		</Route>
 		<Route path='*' component={NotFound} />
