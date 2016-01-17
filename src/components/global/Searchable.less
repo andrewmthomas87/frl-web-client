@@ -1,0 +1,26 @@
+@import '../../less/variables/all.less';
+
+div.results {
+	margin-top: -0.9375em;
+	border: 1px solid @primary;
+	border-top: none;
+
+	&:empty {
+		display: none;
+	}
+
+	div {
+		padding: 0.5em 1.5em;
+		font-size: 1.25em;
+		font-weight: @fontLight;
+		cursor: pointer;
+
+		&:last-child {
+			padding-bottom: 1em;
+		}
+
+		&:hover {
+			color: @primary;
+		}
+	}
+}
