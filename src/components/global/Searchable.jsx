@@ -22,7 +22,7 @@ class Searchable extends Component {
 			<div>
 				<input type='text' placeholder='Search' onChange={this.search} ref='search' />
 				<div>
-					{this.state.results.map(result => <div key={result.code}>{result.name}</div>)}
+					{this.state.results.map(result => <div key={result.code} data-code={result.code} onClick={this.onSelect}>{result.name}</div>)}
 				</div>
 			</div>
 		)
@@ -55,6 +55,10 @@ class Searchable extends Component {
 				results: []
 			})
 		}
+	}
+
+	onSelect = (event) => {
+		this.props.onSelect(event.target.getAttribute('data-code'))
 	}
 
 }
