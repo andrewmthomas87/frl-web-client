@@ -17,7 +17,7 @@ class Events extends Component {
 
 	render() {
 		return (
-			<div id='events' className='page'>
+			<div id='events' className='page small'>
 				<h1>Events</h1>
 				<Searchable searchables={this.state.events} onSelect={this.navigate} />
 			</div>
