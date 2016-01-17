@@ -24,7 +24,12 @@ class SignIn extends Component {
 		const { email, password } = this.refs
 
 		session.signIn(email.value, password.value).then(() => {
-			history.pushState({}, '/user')
+			if (this.props.location.state && this.props.location.state.nextPathname) {
+				history.pushState({}, this.props.location.state.nextPathname)
+			}
+			else {
+				history.pushState({}, '/user')
+			}
 		}).catch((error) => {
 			this.props.addToast(<div>{error}</div>)
 		})
