@@ -21,6 +21,10 @@ import Events from 'components/SignedIn/Events'
 import Event from 'components/SignedIn/Event'
 import SignOut from 'components/SignedIn/SignOut'
 
+import Admin from 'components/Admin'
+import AdminDashboard from 'components/Admin/Dashboard'
+import Draft from 'components/Admin/Draft'
+
 function requireSignedOut(nextState, replaceState) {
 	if (session.signedIn()) {
 		replaceState({}, '/user')
@@ -49,6 +53,10 @@ const router = (
 			<Route path='events' component={Events} />
 			<Route path='event/:code' component={Event} />
 			<Route path='sign-out' component={SignOut} />
+		</Route>
+		<Route path='/admin' component={Admin} onEnter={requireSignedIn}>
+			<IndexRoute component={AdminDashboard} />
+			<Route path='draft' component={Draft} />
 		</Route>
 		<Route path='*' component={NotFound} />
 	</Router>
