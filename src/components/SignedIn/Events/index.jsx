@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 
+import history from 'services/history'
 import socket from 'services/socket'
 
 import Searchable from 'components/global/Searchable'
@@ -18,7 +19,7 @@ class Events extends Component {
 		return (
 			<div id='events' className='page'>
 				<h1>Events</h1>
-				<Searchable searchables={this.state.events} onSelect={() => {}} />
+				<Searchable searchables={this.state.events} onSelect={this.navigate} />
 			</div>
 		)
 	}
@@ -31,6 +32,10 @@ class Events extends Component {
 		}).catch((error) => {
 			this.props.addToast(<div>{error.error}</div>)
 		})
+	}
+
+	navigate = (code) => {
+		history.pushState({}, `/user/event/${code}`)
 	}
 
 }
