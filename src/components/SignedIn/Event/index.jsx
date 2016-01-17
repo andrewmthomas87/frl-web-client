@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import { Link } from 'react-router'
 
 import socket from 'services/socket'
@@ -10,6 +10,10 @@ const eventTypes = [
 ]
 
 class Event extends Component {
+
+	static propTypes = {
+		addToast: PropTypes.func
+	}
 
 	constructor(props) {
 		super(props)

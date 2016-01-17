@@ -1,9 +1,13 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 
 import TeamsOptions from './TeamsOptions'
 import TeamsTable from './TeamsTable'
 
 class Teams extends Component {
+
+	static propTypes = {
+		addToast: PropTypes.func
+	}
 
 	render() {
 		return (
