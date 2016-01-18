@@ -5,12 +5,11 @@ import history from 'services/history'
 import socket from 'services/socket'
 
 const randomThings = [
-	'Knocking stacks over (254)',
 	'Deflating game pieces',
+	'Knocking stacks over (254)',
 	'Buffalo buffalo buffalo buffalo buffalo buffalo buffalo buffalo buffalo buffalo buffalo buffalo buffalo buffalo buffalo buffalo buffalo buffalo buffalo buffalo buffalo buffalo',
-	'Brainstorming terrible loading bar messages',
-	'Build failed: ArrayIndexOutOfBounds',
-	'Wrong autonomous'
+	'Wrong autonomous',
+	'Build failed: ArrayIndexOutOfBoundsException'
 ]
 
 class Draft extends Component {
@@ -28,11 +27,36 @@ class Draft extends Component {
 		}
 	}
 
+	_load(users) {
+		randomThings.forEach((thing, index) => {
+			setTimeout(() => {
+				this.setState({
+					loading: thing
+				})
+			}, (index + 1) * 2000)
+		})
+
+		setTimeout(() => {
+			this.props.addToast(<div>I'm tired of watching this loading thing</div>)
+
+			setTimeout(() => {
+				this.props.addToast(<div>I'm Tim</div>)
+			}, 4500)
+		}, 4500)
+
+		setTimeout(() => {
+			this.setState({
+				users: users,
+				loading: false
+			})
+		}, (randomThings.length + 2.5) * 2000)
+	}
+
 	render() {
-		const userRows = this.state.users ? this.state.users.map((user, index) => {
+		const userRows = this.state.users ? this.state.users.map((user) => {
 			return (
 				<tr key={user.id}>
-					<td>{index + 1}</td>
+					<td>{user.position + 1}</td>
 					<td>{user.name}</td>
 				</tr>
 			)
@@ -51,65 +75,44 @@ class Draft extends Component {
 				</tbody>
 			</table>
 		) : null
+		const start = !this.state.loading ? <button className='fixed' onClick={this.start}>Start</button> : null
 
-		const start = !this.state.loading ? <button className='fixed' onClick={this.start}>Start</button> : (
+		const loading = this.state.loading ? (
 			<div>
 				<h2>Randomizing...</h2>
 				<h3>{this.state.loading}</h3>
 			</div>
-		)
+		) : null
 
 		return (
 			<div id='draft' className='page'>
 				<h1>Draft order</h1>
 				{orderTable}
 				{start}
+				{loading}
 			</div>
 		)
 	}
 
 	componentWillMount() {
-		socket.send('Users.get').then((users) => {
-			for (let i = 0; i < 100; ++i) {
-				users = users.sort((a, b) => {
-					return Math.round(Math.random()) * 2 - 1
-				})
+		socket.send('Admin.generateDraft').then((generated) => {
+			if (!generated) {
+				history.replaceState({}, '/admin/draft/start')
+				return
 			}
 
-			let randomThingsShuffled = randomThings.slice(0)
-			randomThingsShuffled = randomThingsShuffled.sort((a, b) => {
-				return Math.round(Math.random()) * 2 - 1
+			socket.send('Admin.getDraftOrder').then((users) => {
+				this._load(users)
+			}).catch((error) => {
+				this.props.addToast(<div>{error.error}</div>)
 			})
-
-			randomThingsShuffled.forEach((thing, index) => {
-				setTimeout(() => {
-					this.setState({
-						loading: thing
-					})
-				}, (index + 1) * 2000)
-			})
-
-			setTimeout(() => {
-				this.props.addToast(<div>I'm tired of watching this stupid loading thing</div>)
-
-				setTimeout(() => {
-					this.props.addToast(<div>I'm Tim</div>)
-				}, 4500)
-			}, 4500)
-
-			setTimeout(() => {
-				this.setState({
-					users: users,
-					loading: false
-				})
-			}, (randomThingsShuffled.length + 1.5) * 2000)
+		}).catch((error) => {
+			this.props.addToast(<div>{error.error}</div>)
 		})
 	}
 
 	start = () => {
-		history.pushState({
-			users: this.state.users
-		}, '/admin/draft/start')
+		history.pushState({}, '/admin/draft/start')
 	}
 
 }
