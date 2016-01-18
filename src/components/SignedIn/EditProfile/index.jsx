@@ -25,6 +25,14 @@ class EditProfile extends Component {
 
 		const edit = user ? (
 			<div>
+				<div className='button-group'>
+					<Link to='/user/profile/edit/picture'>
+						<button>Picture</button>
+					</Link>
+					<Link to='/user/profile/edit/password'>
+						<button>Password</button>
+					</Link>
+				</div>
 				<div className='labeled-input'>
 					<h4>First name</h4>
 					<input type='text' name='firstName' defaultValue={user.firstName} placeholder='First name' onBlur={this.update} onKeyPress={this.blurInput} ref='firstName' />
