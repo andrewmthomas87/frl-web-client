@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import { Link } from 'react-router'
 
 import history from 'services/history'
@@ -14,6 +14,10 @@ const randomThings = [
 ]
 
 class Draft extends Component {
+
+	static propTypes = {
+		addToast: PropTypes.func
+	}
 
 	constructor(props) {
 		super(props)
@@ -48,7 +52,7 @@ class Draft extends Component {
 			</table>
 		) : null
 
-		const start = !this.state.loading ? <button id='start' onClick={this.start}>Start</button> : (
+		const start = !this.state.loading ? <button className='fixed' onClick={this.start}>Start</button> : (
 			<div>
 				<h2>Randomizing...</h2>
 				<h3>{this.state.loading}</h3>

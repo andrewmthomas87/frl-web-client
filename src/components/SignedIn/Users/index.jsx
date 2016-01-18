@@ -5,7 +5,7 @@ import socket from 'services/socket'
 
 import Searchable from 'components/global/Searchable'
 
-class Events extends Component {
+class Users extends Component {
 
 	static propTypes = {
 		addToast: PropTypes.func
@@ -15,23 +15,23 @@ class Events extends Component {
 		super(props)
 
 		this.state = {
-			events: []
+			users: []
 		}
 	}
 
 	render() {
 		return (
-			<div id='events' className='page small'>
-				<h1>Events</h1>
-				<Searchable searchables={this.state.events} onSelect={this.navigate} ref='searchable' />
+			<div id='users' className='page small'>
+				<h1>Users</h1>
+				<Searchable searchables={this.state.users} onSelect={this.navigate} ref='searchable' />
 			</div>
 		)
 	}
 
 	componentWillMount() {
-		socket.send('Events.getSearchables').then((events) => {
+		socket.send('Users.getSearchables').then((users) => {
 			this.setState({
-				events: events
+				users: users
 			})
 		}).catch((error) => {
 			this.props.addToast(<div>{error.error}</div>)
@@ -42,10 +42,10 @@ class Events extends Component {
 		this.refs.searchable.focus()
 	}
 
-	navigate = (code) => {
-		history.pushState({}, `/user/event/${code}`)
+	navigate = (id) => {
+		history.pushState({}, `/user/user/${id}`)
 	}
 
 }
 
-export default Events
+export default Users

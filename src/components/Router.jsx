@@ -19,6 +19,10 @@ import Teams from 'components/SignedIn/Teams'
 import Team from 'components/SignedIn/Team'
 import Events from 'components/SignedIn/Events'
 import Event from 'components/SignedIn/Event'
+import Users from 'components/SignedIn/Users'
+import User from 'components/SignedIn/User'
+import Profile from 'components/SignedIn/Profile'
+import EditProfile from 'components/SignedIn/EditProfile'
 import SignOut from 'components/SignedIn/SignOut'
 
 import Admin from 'components/Admin'
@@ -52,6 +56,10 @@ const router = (
 			<Route path='team/:teamNumber' component={Team} />
 			<Route path='events' component={Events} />
 			<Route path='event/:code' component={Event} />
+			<Route path='users' component={Users} />
+			<Route path='user/:id' component={User} />
+			<Route path='profile' component={Profile} />
+			<Route path='profile/edit' component={EditProfile} />
 			<Route path='sign-out' component={SignOut} />
 		</Route>
 		<Route path='/admin' component={Admin} onEnter={requireSignedIn}>

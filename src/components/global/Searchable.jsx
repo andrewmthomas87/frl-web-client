@@ -22,10 +22,14 @@ class Searchable extends Component {
 			<div>
 				<input type='text' placeholder='Search' onChange={this.search} ref='search' />
 				<div className='results'>
-					{this.state.results.map(result => <div key={result.code} data-code={result.code} onClick={this.onSelect}>{result.name}</div>)}
+					{this.state.results.map(result => <div key={result.key} data-code={result.key} onClick={this.onSelect}>{result.name}</div>)}
 				</div>
 			</div>
 		)
+	}
+
+	focus() {
+		this.refs.search.focus()
 	}
 
 	search = () => {
@@ -40,10 +44,10 @@ class Searchable extends Component {
 			})
 
 			results = results.sort((a, b) => {
-				const aindex = a.name.toLowerCase().indexOf(search)
-				const bindex = b.name.toLowerCase().indexOf(search)
+				const aIndex = a.name.toLowerCase().indexOf(search)
+				const bIndex = b.name.toLowerCase().indexOf(search)
 				const alpha = Number(a.name > b.name) * 2 - 1
-				return aindex > bindex ? 1 : (aindex < bindex ? -1 : alpha)
+				return aIndex > bIndex ? 1 : (aIndex < bIndex ? -1 : alpha)
 			})
 
 			this.setState({

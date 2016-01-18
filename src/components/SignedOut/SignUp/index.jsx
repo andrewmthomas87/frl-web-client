@@ -1,9 +1,13 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 
 import history from 'services/history'
 import session from 'services/session'
 
 class SignUp extends Component {
+
+	static propTypes = {
+		addToasts: PropTypes.func
+	}
 
 	constructor(props) {
 		super(props)

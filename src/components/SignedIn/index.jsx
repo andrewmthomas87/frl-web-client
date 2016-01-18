@@ -24,6 +24,10 @@ class SignedIn extends Component {
 			link: '/user/research'
 		},
 		{
+			name: 'Profile',
+			link: '/user/profile'
+		},
+		{
 			name: 'Sign out',
 			link: '/user/sign-out'
 		}
