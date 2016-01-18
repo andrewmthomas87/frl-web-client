@@ -62,7 +62,7 @@ class EditProfile extends Component {
 	}
 
 	blurInput = ({ target, key }) => {
-		if (key === 'Enter' && target.value.length) {
+		if (key === 'Enter') {
 			target.blur()
 		}
 	}
@@ -72,6 +72,10 @@ class EditProfile extends Component {
 
 		const input = this.refs[type]
 
+		if (this.state.user[type] === input.value || !(this.state.user[type] || input.value)) {
+			return
+		}
+
 		socket.send(`User.update${type[0].toUpperCase()}${type.slice(1)}`, input.value).then((message) => {
 			this.state.user[type] = input.value
 			this.props.addToast(<div>{message}</div>)
@@ -79,7 +83,7 @@ class EditProfile extends Component {
 			this.props.addToast(<div>{error.error}</div>)
 			input.value = this.state.user[type]
 			input.focus()
-		})
+		})		
 	}
 
 }
