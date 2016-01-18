@@ -26,15 +26,11 @@ class Profile extends Component {
 			<UserDisplay user={user} />			
 		) : null
 
-		const editProfile = user ? (
-			<button className='fixed' onClick={this.edit}>Edit profile</button>
-		) : null
-
 		return (
 			<div id='user' className='page'>
 				<h1>Profile</h1>
 				{userElement}
-				{editProfile}
+				<button className='fixed' onClick={this.edit}>Edit profile</button>
 			</div>
 		)
 	}
