@@ -31,6 +31,7 @@ import Admin from 'components/Admin'
 import AdminDashboard from 'components/Admin/Dashboard'
 import Draft from 'components/Admin/Draft'
 import Start from 'components/Admin/Start'
+import ManageUsers from 'components/Admin/ManageUsers'
 
 function requireSignedOut(nextState, replaceState) {
 	if (session.signedIn()) {
@@ -71,6 +72,7 @@ const router = (
 			<IndexRoute component={AdminDashboard} />
 			<Route path='draft' component={Draft} />
 			<Route path='draft/start' component={Start} />
+			<Route path='users' component={ManageUsers} />
 		</Route>
 		<Route path='*' component={NotFound} />
 	</Router>
