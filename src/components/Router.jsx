@@ -23,6 +23,8 @@ import Users from 'components/SignedIn/Users'
 import User from 'components/SignedIn/User'
 import Profile from 'components/SignedIn/Profile'
 import EditProfile from 'components/SignedIn/EditProfile'
+import EditPassword from 'components/SignedIn/EditPassword'
+import EditPicture from 'components/SignedIn/EditPicture'
 import SignOut from 'components/SignedIn/SignOut'
 
 import Admin from 'components/Admin'
@@ -61,6 +63,8 @@ const router = (
 			<Route path='user/:id' component={User} />
 			<Route path='profile' component={Profile} />
 			<Route path='profile/edit' component={EditProfile} />
+			<Route path='profile/edit/password' component={EditPassword} />
+			<Route path='profile/edit/picture' component={EditPicture} />
 			<Route path='sign-out' component={SignOut} />
 		</Route>
 		<Route path='/admin' component={Admin} onEnter={requireSignedIn}>
