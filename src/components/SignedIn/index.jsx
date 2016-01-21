@@ -88,12 +88,26 @@ class SignedIn extends Component {
 		)
 	}
 
+	componentWillMount() {
+		socket.subscribe('UserUpdate.signOut', this.signOutUpdate)
+	}
+
+	componentWillUnmount() {
+		socket.unsubscribe('UserUpdate.signOut', this.signOutUpdate)
+	}
+
 	addToast = (toast) => {
 		this.refs.toast.addToast(toast)
 	}
 
 	addToasts = (toasts) => {
 		this.refs.toast.addToasts(toasts)
+	}
+
+	signOutUpdate = () => {
+		if (!session.getToken()) {
+			history.pushState({}, '/user/sign-out')
+		}
 	}
 
 }
