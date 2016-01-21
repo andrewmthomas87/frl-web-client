@@ -43,12 +43,56 @@ class Profile extends Component {
 		}).catch((error) => {
 			this.props.addToast(<div>{error.error}</div>)
 		})
+
+		socket.subscribe('UserUpdate.firstName', this.firstNameUpdate)
+		socket.subscribe('UserUpdate.lastName', this.lastNameUpdate)
+		socket.subscribe('UserUpdate.email', this.emailUpdate)
+		socket.subscribe('UserUpdate.slack', this.slackUpdate)
+	}
+
+	componentWillUnmount() {
+		socket.unsubscribe('UserUpdate.firstName', this.firstNameUpdate)
+		socket.unsubscribe('UserUpdate.lastName', this.lastNameUpdate)
+		socket.unsubscribe('UserUpdate.email', this.emailUpdate)
+		socket.unsubscribe('UserUpdate.slack', this.slackUpdate)
 	}
 
 	edit = () => {
 		history.pushState({
 			user: this.state.user
 		}, '/user/profile/edit')
+	}
+
+	firstNameUpdate = (firstName) => {
+		if (this.state.user) {
+			this.setState({
+				user: Object.assign(this.state.user, { firstName: firstName })
+			})
+		}
+	}
+
+	lastNameUpdate = (lastName) => {
+		if (this.state.user) {
+			this.setState({
+				user: Object.assign(this.state.user, { lastName: lastName })
+			})
+		}
+	}
+
+	emailUpdate = (email) => {
+		if (this.state.user) {
+			this.setState({
+				user: Object.assign(this.state.user, { email: email })
+			})
+		}
+	}
+
+	slackUpdate = (slack) => {
+		if (this.state.user) {
+			this.setState({
+				user: Object.assign(this.state.user, { slack: slack })
+			})
+		}
 	}
 
 }
