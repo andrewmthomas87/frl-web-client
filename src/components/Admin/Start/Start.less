@@ -1,0 +1,120 @@
+@import '../../../less/variables/all.less';
+
+div#start>div {
+	background-color: @extraLight;
+
+	>div {
+		display: inline-block;
+		width: 50%;
+		vertical-align: top;
+
+		&.order {
+			background-color: @white;
+
+			>div {
+				height: 22.714em;
+
+				>div {
+					&:first-child {
+						div:last-child {
+							color: @primary;
+						}
+					}
+
+					div {
+						display: inline-block;
+						font-size: 1.25em;
+						line-height: 1em;
+
+						&:first-child {
+							color: @dark;
+							width: 2.5em;
+							padding: 1em 0;
+							background-color: @extraLight;
+							border-bottom: 1px solid transparent;
+						}
+
+						&:last-child {
+							color: @dark;
+							width: ~'calc(100% - 5.5em)';
+							padding: 1em 1.5em;
+							border-bottom: 1px solid transparent;
+							text-align: left;
+						}
+					}
+				}
+			}
+		}
+
+		&.selection {
+			input {
+				color: @white;
+				margin: 0;
+				background-color: @primary;
+				border: none;
+				font-size: 0.833em;
+			}
+
+			div.team {
+				background-color: @dark;
+
+				div.name {
+					color: @white;
+					background-color: @dark;
+					padding: 0.5em;
+					font-size: 1.25em;
+					font-weight: @fontLight;
+				}
+
+				div.stats div {
+					div {
+						display: inline-block;
+						width: 33.33%;
+						padding: 0.375em 0;
+						font-weight: @fontLight;
+					}
+
+					&:first-child div {
+						color: @white;
+						background-color: @primary;
+						font-size: 1em;
+					}
+
+					&:last-child div {
+						color: @dark;
+						background-color: @white;
+						font-size: 1.25em;
+					}
+				}
+
+				button {
+					display: block;
+					width: 100%;
+				}
+			}
+
+			div.counter {
+				color: @dark;
+				padding: 1.5em 0;
+				font-size: 5em;
+				font-weight: @fontThin;
+				line-height: 1em;
+			}
+
+			div.team+div.counter {
+				padding: 0.75em 0;
+				font-size: 3.75em;
+			}
+		}
+	}
+
+	h4 {
+		padding: 0;
+
+		>span {
+			display: block;
+			padding-left: 3em;
+			text-align: left;
+		}
+	}
+}

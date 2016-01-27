@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 
-import history from 'services/history'
-
 import Navigation from 'components/global/Navigation'
 
 import './NotFound.less'
