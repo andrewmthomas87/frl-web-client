@@ -1,6 +1,10 @@
 import React, { Component, PropTypes } from 'react'
 
+import socket from 'services/socket'
+
 import Teams from './Teams'
+
+import './TeamsTable.less'
 
 class TeamsTable extends Component {
 
@@ -33,7 +37,7 @@ class TeamsTable extends Component {
 		if (teams) {
 			for (let i = 0, length = Math.min(teams.length, this.state.limit || teams.length); i < length; ++i) {
 				teamRows.push((
-					<tr key={teams[i].teamNumber}>
+					<tr key={teams[i].teamNumber} className={teams[i].owner ? 'taken' : ''}>
 						<td>{teams[i].teamNumber}</td>
 						<td><a href={`/user/team/${teams[i].teamNumber}`} target='_blank'>{teams[i].name}</a></td>
 						<td>{teams[i].averageSeed}</td>
@@ -76,9 +80,15 @@ class TeamsTable extends Component {
 			this.setState({
 				teams: Teams.teams
 			})
+
+			socket.subscribe('TeamUpdate.owner', this.ownerUpdate)
 		}).catch((error) => {
 			this.props.addToast(<div>{error.error}</div>)
 		})
+	}
+
+	componentWillUnmount() {
+		socket.unsubscribe('TeamUpdate.owner', this.ownerUpdate)
 	}
 
 	updateSort(update) {
@@ -92,6 +102,13 @@ class TeamsTable extends Component {
 	updateLimit(limit) {
 		this.setState({
 			limit: limit
+		})
+	}
+
+	ownerUpdate = ({ teamNumber, owner }) => {
+		Teams.updateTeamOwner(teamNumber, owner)
+		this.setState({
+			teams: Teams.getTeams(this.sort)
 		})
 	}
 

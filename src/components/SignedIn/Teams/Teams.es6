@@ -82,6 +82,11 @@ class Teams {
 		return teams
 	}
 
+	updateTeamOwner(teamNumber, owner) {
+		const teamIndex = this.teams.findIndex(team => team.teamNumber == teamNumber) // Using double equals because this.teams[n].teamNumber is a string
+		this.teams[teamIndex].owner = owner
+	}
+
 }
 
 const TeamsInstance = new Teams()
