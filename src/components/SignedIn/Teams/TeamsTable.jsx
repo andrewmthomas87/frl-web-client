@@ -19,7 +19,8 @@ class TeamsTable extends Component {
 			number: null,
 			weeks: [],
 			name: null,
-			sort: 'teamNumber'
+			sort: 'teamNumber',
+			filter: 0
 		}
 		this.state = {
 			teams: null,

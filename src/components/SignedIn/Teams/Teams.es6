@@ -19,8 +19,25 @@ class Teams {
 		})
 	}
 
-	getTeams({ name, number, weeks, sort }) {
+	getTeams({ name, number, weeks, sort, filter }) {
 		let teams = this.teams.slice(0)
+
+		if (filter === 1) {
+			for (let i = 0; i < teams.length; ++i) {
+				if (teams[i].owner) {
+					teams.splice(i, 1)
+					--i
+				}
+			}
+		}
+		else if (filter === 2) {
+			for (let i = 0; i < teams.length; ++i) {
+				if (!teams[i].owner) {
+					teams.splice(i, 1)
+					--i
+				}
+			}
+		}
 
 		if (name) {
 			const regex = new RegExp(name, 'i')

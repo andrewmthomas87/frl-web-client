@@ -12,6 +12,7 @@ class TeamsOptions extends Component {
 		weeksChanged: PropTypes.func.isRequired,
 		nameChanged: PropTypes.func.isRequired,
 		sortChanged: PropTypes.func.isRequired,
+		filterChanged: PropTypes.func.isRequired,
 		limitChanged: PropTypes.func.isRequired
 	}
 
@@ -36,6 +37,21 @@ class TeamsOptions extends Component {
 		{
 			key: 'eventWins',
 			name: 'Event wins'
+		}
+	]
+
+	static filters = [
+		{
+			key: 0,
+			name: 'All'
+		},
+		{
+			key: 1,
+			name: 'Available'
+		},
+		{
+			key: 2,
+			name: 'Taken'
 		}
 	]
 
@@ -73,6 +89,13 @@ class TeamsOptions extends Component {
 				<div>
 					<h5>Sort by</h5>
 					<Select options={TeamsOptions.sorts} size='large' onChange={this.props.sortChanged} selected={1} />
+				</div>
+				<br />
+				<div>
+					<div>
+						<h5>Restrict</h5>
+						<Select options={TeamsOptions.filters} size='large' onChange={this.props.filterChanged} selected={1} />
+					</div>
 				</div>
 				<br />
 				<div>
