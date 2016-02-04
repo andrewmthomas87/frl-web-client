@@ -21,6 +21,12 @@ class Team extends Component {
 	render() {
 		const team = this.state.team
 
+		const owner = team ? (
+			<tr key='owner'>
+				<th>Owner</th>
+				<td>{team.owner ? <Link to={`/user/user/${team.owner}`}>{team.userName}</Link> : 'Available'}</td>
+			</tr>
+		) : null
 		const tba = team ? (
 			<tr key='tba'>
 				<th>TBA</th>
@@ -85,6 +91,7 @@ class Team extends Component {
 				<div className='details'>
 					<table>
 						<tbody>
+							{owner}
 							{tba}
 							{website}
 							{location}
@@ -114,6 +121,22 @@ class Team extends Component {
 	}
 
 	componentWillMount() {
+		socket.send('Team.get', this.teamNumber).then((team) => {
+			this.setState({
+				team: team
+			})
+
+			socket.subscribe('TeamUpdate.owner', this.ownerUpdate)
+		}).catch((error) => {
+			this.props.addToast(<div>{error.error}</div>)
+		})
+	}
+
+	componentWillUnmount() {
+		socket.unsubscribe('TeamUpdate.owner', this.ownerUpdate)
+	}
+
+	ownerUpdate = () => {
 		socket.send('Team.get', this.teamNumber).then((team) => {
 			this.setState({
 				team: team
