@@ -56,7 +56,7 @@ class EditProfile extends Component {
 		) : null
 
 		return (
-			<div id='edit' className='page small'>
+			<div id='edit' className='page small button'>
 				<h1>Edit profile</h1>
 				{edit}
 			</div>

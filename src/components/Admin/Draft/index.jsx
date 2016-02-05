@@ -85,7 +85,7 @@ class Draft extends Component {
 		) : null
 
 		return (
-			<div id='draft' className='page'>
+			<div id='draft' className='page button'>
 				<h1>Draft order</h1>
 				{orderTable}
 				{start}
