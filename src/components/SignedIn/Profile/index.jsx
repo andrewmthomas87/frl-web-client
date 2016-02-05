@@ -27,7 +27,7 @@ class Profile extends Component {
 		) : null
 
 		return (
-			<div id='user' className='page'>
+			<div id='user' className='page button'>
 				<h1>Profile</h1>
 				{userElement}
 				<button className='fixed' onClick={this.edit}>Edit profile</button>
