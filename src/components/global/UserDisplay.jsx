@@ -40,9 +40,7 @@ class UserDisplay extends Component {
 
 		return user ? (
 			<div>
-				<div id='picture'>
-					<img src={user.picture} />
-				</div>
+				<div id='picture' style={{backgroundImage: `url('${user.picture}')`}}></div>
 				<h4><span>{`${user.firstName} ${user.lastName}`}</span></h4>
 				<div className='details'>
 					<table>
