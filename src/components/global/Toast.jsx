@@ -20,12 +20,16 @@ class Toast extends Component {
 	}
 
 	_addToast() {
-		this.setState({
-			toast: this.toasts.shift()
-		})
-
+		const toast = this.toasts.shift()
 		clearTimeout(this.timeout)
-		setTimeout(this._removeToast, Toast.timeout)
+
+		if (toast) {
+			this.timeout = setTimeout(this._removeToast, Toast.timeout)
+		}
+
+		this.setState({
+			toast: toast
+		})
 	}
 
 	_removeToast = () => {

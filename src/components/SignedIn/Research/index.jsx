@@ -11,7 +11,6 @@ class Research extends Component {
 					<Link to='/user/teams'><button>Teams</button></Link>
 					<Link to='/user/events'><button>Events</button></Link>
 					<Link to='/user/users'><button>Users</button></Link>
-					<Link to='/user/pick-list'><button>Pick list</button></Link>
 				</div>
 			</div>
 		)
