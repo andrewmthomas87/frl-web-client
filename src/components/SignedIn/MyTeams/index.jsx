@@ -179,7 +179,7 @@ class MyTeams extends Component {
 				const teams = this.state.teams
 				const selections = this.state.selections
 
-				for (let i = 0; i < teams.length; ++i) {
+				for (let i = 0; i < selections.length; ++i) {
 					if (selections[i].teamNumber === teamNumber) {
 						const team = selections.splice(i, 1)[0]
 						team.active = null
