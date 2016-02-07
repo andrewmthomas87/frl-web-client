@@ -1,0 +1,55 @@
+@import '../../../less/variables/all.less';
+
+div#my-teams {
+
+	h4 {
+		color: @white;
+		background-color: @primary;
+	}
+
+	div.teams, div.selections, div.active {
+		margin-bottom: 1.5em;
+
+		>div {
+			padding: 0.75em 0;
+			border: 1px solid @light;
+			border-top: none;
+			font-size: 1.25em;
+			font-weight: 300;
+			text-align: left;
+			cursor: pointer;
+
+			&:first-child.selected {
+				margin-top: 0;
+				border-top: none;
+			}
+
+			&.selected {
+				padding-bottom: 0;
+				margin-top: -1px;
+				margin-bottom: 0;
+				border: 1px solid @primary;
+			}
+
+			>span:first-child {
+				padding-left: 1.75em;
+			}
+
+			div.menu {
+				padding-left: 1.5875em;
+				margin-top: 0.75em;
+				background-color: @primary;
+				font-size: 0.8em;
+
+				button.disabled {
+					text-decoration: line-through;
+				}
+			}
+		}
+	}
+
+	div.active>div {
+		cursor: default;
+	}
+
+}

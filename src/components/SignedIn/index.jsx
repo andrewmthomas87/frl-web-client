@@ -24,6 +24,14 @@ class SignedIn extends Component {
 			link: '/user/research'
 		},
 		{
+			name: 'My teams',
+			link: '/user/my-teams'
+		},
+		{
+			name: 'Pick list',
+			link: '/user/pick-list'
+		},
+		{
 			name: 'Profile',
 			link: '/user/profile'
 		},
