@@ -22,6 +22,7 @@ import Event from 'components/SignedIn/Event'
 import Users from 'components/SignedIn/Users'
 import User from 'components/SignedIn/User'
 import MyTeams from 'components/SignedIn/MyTeams'
+import PickList from 'components/SignedIn/PickList'
 import Profile from 'components/SignedIn/Profile'
 import EditProfile from 'components/SignedIn/EditProfile'
 import EditPassword from 'components/SignedIn/EditPassword'
@@ -64,6 +65,7 @@ const router = (
 			<Route path='users' component={Users} />
 			<Route path='user/:id' component={User} />
 			<Route path='my-teams' component={MyTeams} />
+			<Route path='pick-list' component={PickList} />
 			<Route path='profile' component={Profile} />
 			<Route path='profile/edit' component={EditProfile} />
 			<Route path='profile/edit/password' component={EditPassword} />

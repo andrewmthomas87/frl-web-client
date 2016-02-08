@@ -1,0 +1,68 @@
+@import '../../../less/variables/all.less';
+
+div#pick-list {
+
+	div.list {
+		div.team {
+			padding: 0.75em 1.5em;
+			margin-top: -1px;
+			background-color: @white;
+			border: 1px solid @light;
+			text-align: left;
+			cursor: pointer;
+			pointer-events: none;
+
+			h5 {
+				display: inline-block;
+				color: @dark;
+
+				a {
+					pointer-events: initial;
+				}
+			}
+
+			span.drag {
+				display: inline-block;
+				width: 2em;
+				height: 2em;
+				padding: 1em;
+				margin: -0.75em;
+				background-image: url('data:image/svg+xml;utf8,<svg fill="@{medium}" height="512" viewBox="0 0 512 512" width="512" xmlns="http://www.w3.org/2000/svg"><path d="M80 304h352v16H80zM80 248h352v16H80zM80 192h352v16H80z"/></svg>');
+				background-position: center;
+				background-size: 62.5%;
+				background-repeat: no-repeat;
+				float: right;
+				pointer-events: initial;
+			}
+		}
+
+		div.layer {
+			position: fixed;
+			top: 0;
+			bottom: 0;
+			width: 50em;
+			pointer-events: none;
+
+			div.preview {
+				position: absolute;
+				top: -1px;
+				left: -1px;
+				width: ~'calc(100% - 3em - 1px)';
+				border: 1px solid @light;
+				z-index: 99;
+			}
+		}
+	}
+
+	button.fixed {
+		transition: padding 0.125s ease;
+
+		&.hidden {
+			display: none;
+		}
+
+		&.hovered {
+			padding: 1.5em;
+		}
+	}
+}

@@ -21,6 +21,8 @@ class Team extends Component {
 	render() {
 		const team = this.state.team
 
+		const addToPickList = team && !(team.listIndex || team.listIndex === 0) ? <button className='fixed' onClick={this.addToPickList}>Add to pick list</button> : null
+
 		const owner = team ? (
 			<tr key='owner'>
 				<th>Owner</th>
@@ -110,11 +112,12 @@ class Team extends Component {
 						</tbody>
 					</table>
 				</div>
+				{addToPickList}
 			</div>
 		) : <h1>{this.teamNumber}</h1>
 
 		return (
-			<div id='team' className='page'>
+			<div id='team' className='page button'>
 				{teamElement}
 			</div>
 		)
@@ -134,6 +137,20 @@ class Team extends Component {
 
 	componentWillUnmount() {
 		socket.unsubscribe('TeamUpdate.owner', this.ownerUpdate)
+	}
+
+	addToPickList = () => {
+		socket.send('User.addTeamToPickList', this.teamNumber).then((message) => {
+			this.props.addToast(<div>{message}</div>)
+
+			const team = this.state.team
+			team.listIndex = true
+			this.setState({
+				team: team
+			})
+		}).catch((error) => {
+			this.props.addToast(<div>{error.error}</div>)
+		})
 	}
 
 	ownerUpdate = () => {
